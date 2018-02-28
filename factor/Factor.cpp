@@ -1,6 +1,7 @@
 //
 // Created by rufus on 26.02.18.
 //
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -40,7 +41,7 @@ int main(int args, char **argv) {
             x/=2;
             x*=-1;
         }
-        if (x == -1 || x == 0 || x == 1)std::cout << std::endl;
+        if (x == -1 || x == 0 || x == 1)std::cout << x << std::endl;
         else {
             if (x < 0) {
                 std::cout << "-1*";
