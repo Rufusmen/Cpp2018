@@ -11,7 +11,7 @@ Straight::Straight(const Point &a, const Point &b) : Straight(a.y - b.y, b.x - a
     if (a.x == b.x && a.y == b.y)throw std::invalid_argument("Same points");
 }
 
-Straight::Straight(const Vector &v) : Straight(Point(v.dx, v.dy), Point(0, v.dx + v.dy)) {
+Straight::Straight(const Vector &v) : Straight(Straight(Point(0,0),Point(-v.dy,v.dx)),v) {
     if (v.dx == 0 && v.dy == 0)throw std::invalid_argument("Vector {0,0}");
 }
 
