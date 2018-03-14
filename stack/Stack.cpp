@@ -56,6 +56,8 @@ Stack &Stack::operator=(const Stack &s) {
 }
 
 Stack &Stack::operator=(Stack &&s) noexcept{
+    if(&s == this)
+        return *this;
     this->~Stack();
     capacity = s.capacity;
     size = s.size;
