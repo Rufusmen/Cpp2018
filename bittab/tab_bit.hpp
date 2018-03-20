@@ -10,8 +10,8 @@
 using namespace std;
 
 class tab_bit {
-    typedef uint64_t slowo; // komorka w tablicy
-    static const int rozmiarSlowa = sizeof(slowo); // rozmiar slowa w bitach
+    typedef unsigned long long slowo; // komorka w tablicy
+    static const int rozmiarSlowa = sizeof(slowo)*8; // rozmiar slowa w bitach
 
     class ref {
         tab_bit *_ptr;
@@ -22,7 +22,6 @@ class tab_bit {
         ref &operator=(bool b);
 
         ref &operator=(const ref &val);
-
         operator bool() const;
     }; // klasa pomocnicza do adresowania bitów
 protected:
