@@ -12,8 +12,8 @@ void test(){
     try{s.push("ola");}catch (std::invalid_argument &e){
         std::cerr << e.what();
     }
-    Stack s2 = {"a","b","c"};
-    std::cout << s2.pop() << std::endl;
+    Stack s2{"a","b","c"};
+    std::cout << "tu "<<s2.pop() << std::endl;
     Stack s3 = std::move(s2);
     std::cout << s3.top() << std::endl;
     s3.push("d");
