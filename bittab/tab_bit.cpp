@@ -8,6 +8,7 @@
 std::basic_istream<char> &operator>>(istream &we, tab_bit &tb) {
     string str;
     we >> str;
+    if(str.size()>tb.dl)throw invalid_argument("za dużo bitów");
     for(int i=0;i<str.size();i++)
         tb.pisz(i,str[i]-'0');
     return we;
@@ -21,23 +22,28 @@ ostream &operator<<(ostream &wy, const tab_bit &tb) {
 
 tab_bit::tab_bit(int rozm) {
     dl = rozm;
-    tab = new slowo[rozm/rozmiarSlowa];
+    ile_slow = (rozm+63)/rozmiarSlowa;
+    tab = new slowo[ile_slow];
 }
 
 tab_bit::tab_bit(tab_bit::slowo tb) {
     dl = rozmiarSlowa;
+    ile_slow =1;
     tab= new slowo(tb);
 }
 
 tab_bit::tab_bit(const tab_bit &tb) {
     dl = tb.dl;
-    tab = new slowo[dl/rozmiarSlowa];
-    for(int i=0;i<dl/rozmiarSlowa;i++)tab[i]=tb.tab[i];
+    ile_slow = tb.ile_slow;
+    tab = new slowo[ile_slow];
+    for(int i=0;i<ile_slow;i++)tab[i]=tb.tab[i];
 }
 
 tab_bit::tab_bit(tab_bit &&tb) noexcept {
     dl = tb.dl;
     tab = tb.tab;
+    ile_slow = tb.ile_slow;
+    tb.ile_slow=0;
     tb.dl = 0;
     tb.tab = nullptr;
 }
@@ -54,6 +60,8 @@ tab_bit &tab_bit::operator=(tab_bit &&tb) noexcept {
     this->~tab_bit();
     dl = tb.dl;
     tab = tb.tab;
+    ile_slow = tb.ile_slow;
+    tb.ile_slow = 0;
     tb.dl = 0;
     tb.tab = nullptr;
     return *this;
@@ -78,6 +86,7 @@ bool tab_bit::operator[](int i) const {
 }
 
 tab_bit::ref tab_bit::operator[](int i) {
+    if(i>=dl)throw invalid_argument("Poza tablicą");
     return tab_bit::ref(this,i);
 }
 
@@ -87,7 +96,8 @@ int tab_bit::rozmiar() const {
 
 tab_bit::tab_bit(initializer_list<bool> l) {
     dl = static_cast<int>(l.size());
-    tab = new slowo[dl/rozmiarSlowa];
+    ile_slow = (dl+63)/rozmiarSlowa;
+    tab = new slowo[ile_slow];
     int i=0;
     for(bool b : l){
         pisz(i++,b);
@@ -95,33 +105,34 @@ tab_bit::tab_bit(initializer_list<bool> l) {
 }
 
 tab_bit &tab_bit::operator|=(const tab_bit &other) {
-    for(int i=0;i<dl/rozmiarSlowa;i++){
-        if(i<other.dl/rozmiarSlowa)tab[i]|=other.tab[i];
+    for(int i=0;i<ile_slow;i++){
+        if(i<other.ile_slow)tab[i]|=other.tab[i];
     }
     return *this;
 }
 
 tab_bit &tab_bit::operator&=(const tab_bit &other) {
-    for(int i=0;i<dl/rozmiarSlowa;i++){
-        if(i<other.dl/rozmiarSlowa)tab[i]&=other.tab[i];
+    for(int i=0;i<ile_slow;i++){
+        if(i<other.ile_slow)tab[i]&=other.tab[i];
     }
     return *this;
 }
 
 tab_bit &tab_bit::operator^=(const tab_bit &other) {
-    for(int i=0;i<dl/rozmiarSlowa;i++){
-        if(i<other.dl/rozmiarSlowa)tab[i]^=other.tab[i];
+    for(int i=0;i<ile_slow;i++){
+        if(i<other.ile_slow)tab[i]^=other.tab[i];
     }
     return *this;
 }
 
 
 
-tab_bit &tab_bit::operator~() {
-    for(int i=0;i<dl/rozmiarSlowa;i++){
-        tab[i]=~tab[i];
+tab_bit tab_bit::operator~() {
+    tab_bit wyn(dl);
+    for(int i=0;i<ile_slow;i++){
+        wyn[i]=~tab[i];
     }
-    return *this;
+    return wyn;
 }
 
 tab_bit operator|(tab_bit tb, const tab_bit &other) {

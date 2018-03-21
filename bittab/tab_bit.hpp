@@ -27,6 +27,7 @@ class tab_bit {
 protected:
     int dl; // liczba bitów
     slowo *tab; // tablica bitów
+    int ile_slow;
 public:
     explicit tab_bit(int rozm); // wyzerowana tablica bitow [0...rozm]
     explicit tab_bit(slowo tb); // tablica bitów [0...rozmiarSlowa]
@@ -58,7 +59,7 @@ public:
 
     tab_bit& operator^=(const tab_bit &other);
 
-    tab_bit& operator~();
+    tab_bit operator~();
 
 // operatory bitowe: | i |=, & i &=, ^ i ^= oraz !
 public:
