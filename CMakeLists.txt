@@ -3,4 +3,4 @@ project(Cpp2018)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Cpp2018 bittab/tab_bit.hpp bittab/tab_bit.cpp bittab/main.cpp)
+add_executable(Cpp2018 Date/main.cpp Date/date.cpp Date/date.h Date/timePoint.cpp Date/timePoint.h Date/event.cpp Date/event.h)
