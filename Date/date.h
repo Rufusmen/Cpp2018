@@ -48,9 +48,6 @@ public:
     date &operator-=(int days);
 
 protected:
-    virtual void check() const;
-
-
     static inline bool isLeapYear(date d);
 
     static long long int toDays( date d);
@@ -59,6 +56,7 @@ protected:
 
 private:
     int timeDifference(date d) const;
+    void check() const;
 };
 
 

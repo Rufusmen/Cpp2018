@@ -18,7 +18,7 @@ public:
 
     event(const timePoint &time, const string &info);
 
-    event(int year,int month,int day,int hour,int minutes,int sec,const string &info);
+    event(int year,int month=1,int day=1,int hour=0,int minutes=0,int sec=0,const string &info = "No info");
 
     bool operator<(const event &rhs) const;
 

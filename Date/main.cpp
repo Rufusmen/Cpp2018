@@ -13,6 +13,7 @@ int main(){
     vec.emplace_back(event(p,"Birthday"));
     p+=3600;
     vec.emplace_back(event(p,"Meet Dad"));
+    vec.emplace_back(event(timePoint(2019),"2019"));
     sort(vec.begin(),vec.end());
     for (auto v:vec)cout << v.toString() << endl;
     p-=3600;

@@ -34,7 +34,6 @@ timePoint::timePoint() {
 timePoint::timePoint(date d) : date(d), hours(0), minutes(0), seconds(0) {}
 
 void timePoint::check() const {
-    date::check();
     if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds > 59)
         throw std::invalid_argument("Wrong time");
 }
