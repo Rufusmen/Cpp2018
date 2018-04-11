@@ -12,8 +12,11 @@ class Binary : public Unary{
 protected:
     Wyrazenie *op2;
 public:
-    Binary(Wyrazenie *op1, Wyrazenie *op2);
-    ~Binary()
+    Binary(Wyrazenie *op1, Wyrazenie *op2) : Unary(op1), op2(op2) {}
+
+    virtual ~Binary() {
+        delete op2;
+    }
 };
 
 

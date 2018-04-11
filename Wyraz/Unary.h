@@ -13,12 +13,11 @@ protected:
     Wyrazenie *op1;
 public:
     explicit Unary(Wyrazenie *op1) : op1(op1) {}
-    ~Unary();
+    virtual ~Unary() {
+        delete op1;
+    }
 };
 
-Unary::~Unary() {
-    delete op1;
-}
 
 
 #endif //CPP2018_UNARY_H
