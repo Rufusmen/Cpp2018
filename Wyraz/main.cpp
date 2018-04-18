@@ -114,4 +114,5 @@ int main(){
     Zmienna::add("y",5);
     cout << w->oblicz() << endl;
     cout << w->toString();
+    delete w;
 }

@@ -3,4 +3,4 @@ project(Cpp2018)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Cpp2018 Wyraz/Wyrazenie.h Wyraz/main.cpp Wyraz/Liczba.cpp Wyraz/Liczba.h Wyraz/Const.h Wyraz/Pi.cpp Wyraz/Pi.h Wyraz/E.cpp Wyraz/E.h Wyraz/Fi.cpp Wyraz/Fi.h Wyraz/Zmienna.cpp Wyraz/Zmienna.h Wyraz/Unary.h Wyraz/Sin.cpp Wyraz/Sin.h Wyraz/Cos.cpp Wyraz/Cos.h Wyraz/Exp.cpp Wyraz/Exp.h Wyraz/Ln.cpp Wyraz/Ln.h Wyraz/Abs.cpp Wyraz/Abs.h Wyraz/Opos.cpp Wyraz/Opos.h Wyraz/Rev.cpp Wyraz/Rev.h Wyraz/Binary.h Wyraz/Add.cpp Wyraz/Add.h Wyraz/Sub.cpp Wyraz/Sub.h Wyraz/Mul.cpp Wyraz/Mul.h Wyraz/Div.cpp Wyraz/Div.h Wyraz/Mod.cpp Wyraz/Mod.h Wyraz/Pow.cpp Wyraz/Pow.h Wyraz/Log.cpp Wyraz/Log.h)
+add_executable(Cpp2018 Matrix/main.cpp Matrix/Matrix.cpp Matrix/Matrix.h Matrix/Invalid_size_exception.h Matrix/Wrong_index_exception.h Matrix/Not_square_matrix_exception.h Matrix/Reverse_exception.h Matrix/Matrix_exception.h)
